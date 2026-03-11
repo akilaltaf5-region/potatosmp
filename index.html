@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Potato Indonesia | Minecraft SMP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+        :root {
+            --primary: #7873f5;
+            --secondary: #ff6ec4;
+            --accent-yellow: #ffbb33;
+            --accent-red: #ff4444;
+            --accent-blue: #33b5e5;
+            --accent-green: #00c851;
+            --accent-home: #38ef7d;
+            --dark-bg: #0f0c29;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header Styling */
+        header {
+            width: 100%;
+            padding: 40px 20px;
+            text-align: center;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .server-title {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            margin: 0;
+        }
+
+        .yellow { color: var(--accent-yellow); }
+        .red { color: var(--accent-red); }
+        .blue { color: var(--accent-blue); }
+
+        /* Main Container */
+        .container {
+            width: 95%;
+            max-width: 650px;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .content-box {
+            padding: 30px;
+            border-radius: 24px;
+            backdrop-filter: blur(16px);
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #efefef;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+
+        /* Navigation Buttons */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            padding: 14px 10px;
+            border: none;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        .btn-rank { background: linear-gradient(45deg, var(--secondary), var(--primary)); grid-column: span 2; }
+        .btn-ip { background-color: var(--accent-green); }
+        .btn-vote { background-color: var(--accent-yellow); color: #444; }
+        .btn-home { background: linear-gradient(45deg, #11998e, var(--accent-home)); grid-column: span 2; margin-top: 5px; }
+
+        /* Dynamic Content Area */
+        .display-area {
+            text-align: left;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 16px;
+            min-height: 100px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Item Styling */
+        .rank-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 8px 0;
+            align-items: center;
+        }
+
+        .price-tag, .limit-tag {
+            color: var(--accent-yellow);
+            font-weight: 800;
+            font-family: monospace;
+            font-size: 1.05rem;
+        }
+
+        .info-card-inner {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px dashed rgba(255,255,255,0.2);
+        }
+
+        .buy-action {
+            margin-top: 20px;
+            width: 100%;
+            background: #25d366; 
+            color: white;
+            font-size: 1.1rem;
+            padding: 15px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--accent-blue);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="server-title">
+        <span class="yellow">Server</span>
+        <span class="red">Potato</span>
+        <span class="blue">Indonesia</span>
+    </h1>
+</header>
+
+<div class="container">
+    <div class="content-box">
+        <h2>Pusat Informasi</h2>
+        <p class="subtitle">Selamat datang di portal resmi Potato SMP</p>
+
+        <div class="nav-grid">
+            <button class="btn btn-rank" onclick="showRank()">✨ BELI RANK & MONEY</button>
+            <button class="btn btn-ip" onclick="showIP()">🌍 IP SERVER</button>
+            <button class="btn btn-vote" onclick="showVote()">🗳️ VOTE WEB</button>
+            <button class="btn btn-home" onclick="showHome()">🏠 LIMIT SET HOME</button>
+        </div>
+
+        <div id="display-area" class="display-area">
+            Silahkan pilih menu di atas untuk melihat detail informasi server.
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 Potato Indonesia Team. All Rights Reserved.
+</footer>
+
+<script>
+const display = document.getElementById('display-area');
+
+function showRank() {
+    display.style.borderLeftColor = 'var(--secondary)';
+    display.innerHTML = `
+<b style="color:var(--accent-yellow)">🌙 PROMO RAMADHAN DISKON 🌙</b>
+
+<b>📋 DAFTAR RANK:</b>
+<div class="rank-item"><span>VIP</span> <span class="price-tag">10k</span></div>
+<div class="rank-item"><span>VIP+</span> <span class="price-tag">20k</span></div>
+<div class="rank-item"><span>MVP</span> <span class="price-tag">40k</span></div>
+<div class="rank-item"><span>MVP+</span> <span class="price-tag">65k</span></div>
+<div class="rank-item"><span>YONGSUN</span> <span class="price-tag">90k</span></div>
+<div class="rank-item"><span>YONGSUN+</span> <span class="price-tag">135k</span></div>
+<div class="rank-item"><span>NIGHTMARE</span> <span class="price-tag">175k</span></div>
+<div class="rank-item"><span>NIGHTMARE+</span> <span class="price-tag">200k</span></div>
+
+<br>
+<b>💰 PAKET MONEY:</b>
+<div class="rank-item"><span>5k</span> <span class="price-tag">300k Money</span></div>
+<div class="rank-item"><span>10k</span> <span class="price-tag">700k Money</span></div>
+<div class="rank-item"><span>15k</span> <span class="price-tag">1.3M Money</span></div>
+<div class="rank-item"><span>20k</span> <span class="price-tag">2.0M Money</span></div>
+
+<button class="btn buy-action" onclick="buyNow()">🛒 BELI VIA WHATSAPP</button>
+    `;
+}
+
+function showIP() {
+    display.style.borderLeftColor = 'var(--accent-green)';
+    display.innerHTML = `
+<b>📡 KONEKSI SERVER</b>
+
+<b>🪨 BEDROCK EDITION</b>
+IP: <span class="highlight">play.potatosmp.my.id</span>
+Port: <span class="highlight">19132</span>
+
+<b>☁️ JAVA EDITION</b>
+IP: <span class="highlight">play.potatosmp.my.id</span>
+
+<b>🎮 VERSI SUPPORT:</b>
+• Bedrock: 1.20 - 1.26.0.2
+• Java: 1.19 - Terbaru
+    `;
+}
+
+function showVote() {
+    display.style.borderLeftColor = 'var(--accent-yellow)';
+    display.innerHTML = `
+<b>🗳️ VOTE & DAPATKAN HADIAH!</b>
+
+Dapatkan <b style="color:var(--accent-green)">55K Money</b> & <b style="color:var(--accent-green)">2x Key Vote</b> secara instan!
+
+<b>🔗 LINK VOTE:</b>
+<a href="https://minecraft-mp.com/server-s353692" target="_blank" style="color:var(--accent-blue); word-break:break-all;">https://minecraft-mp.com/server-s353692</a>
+
+<b>📝 CARA VOTE:</b>
+1. Klik link di atas.
+2. Isi Username Minecraft Anda.
+3. Klik tombol Vote.
+
+<b>⚠️ INFO USERNAME:</b>
+• <b>Bedrock:</b> Gunakan tanda titik (Contoh: <span class="highlight">.Kentang68</span>)
+• <b>Java:</b> Langsung nama saja.
+    `;
+}
+
+function showHome() {
+    display.style.borderLeftColor = 'var(--accent-home)';
+    display.innerHTML = `
+<b style="color:var(--accent-home)">🏠 JATAH TITIK HOME (RUMAH)</b>
+<p style="margin-top:-5px; font-size: 0.85rem; opacity:0.8;">Batas maksimal sethome untuk setiap rank:</p>
+
+<div class="info-card-inner">
+<div class="rank-item"><span>👤 Member / Citizen</span> <span class="limit-tag">2</span></div>
+<div class="rank-item"><span>💎 VIP</span> <span class="limit-tag">6</span></div>
+<div class="rank-item"><span>💎 VIP+</span> <span class="limit-tag">9</span></div>
+<div class="rank-item"><span>🔥 MVP</span> <span class="limit-tag">12</span></div>
+<div class="rank-item"><span>🔥 MVP+</span> <span class="limit-tag">15</span></div>
+<div class="rank-item"><span>👑 YONGSUN</span> <span class="limit-tag">20</span></div>
+<div class="rank-item"><span>👑 YONGSUN+</span> <span class="limit-tag">25</span></div>
+<div class="rank-item"><span>🌌 NIGHTMARE</span> <span class="limit-tag">50</span></div>
+<div class="rank-item"><span>🌌 NIGHTMARE+</span> <span class="limit-tag">100</span></div>
+</div>
+    `;
+}
+
+function buyNow() {
+    const waNumber = "6282340319193";
+    const message = "Halo Admin Potato SMP, saya ingin membeli Rank/Money. Mohon bantuannya.";
+    const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
